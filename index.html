@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blessy PDP - Hero Section Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Gazpacho';
+    src: url('https://db.onlinewebfonts.com/t/2596a3b8eb9c3389e5f3a68e6e1458a7.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #efffe9;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: #efffe9;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .header img {
+    height: 28px;
+    object-fit: contain;
+  }
+
+  /* ─── PDP LAYOUT ─── */
+  .pdp-wrapper {
+    background: #efffe9;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .pdp-hero {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ─── HERO IMAGE SECTION ─── */
+  .hero-image-section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #efffe9;
+  }
+
+  /* Mobile image (default) */
+  .hero-img-mobile {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Desktop image (hidden on mobile) */
+  .hero-img-desktop {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+
+  /* Carousel dots */
+  .carousel-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+  }
+
+  .carousel-dots .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    transition: all 0.3s;
+  }
+
+  .carousel-dots .dot.active {
+    background: #fff;
+    width: 20px;
+    border-radius: 10px;
+  }
+
+  /* Carousel arrows */
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2E6858;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .carousel-arrow.left { left: 12px; }
+  .carousel-arrow.right { right: 12px; }
+
+  /* ─── CONTENT SECTION ─── */
+  .content-section {
+    padding: 22px 22px 0;
+  }
+
+  /* Social proof bar */
+  .social-proof {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .stars {
+    display: flex;
+    gap: 1px;
+  }
+
+  .stars svg {
+    width: 14px;
+    height: 14px;
+    fill: #2E6858;
+  }
+
+  .social-proof-text {
+    font-size: 13px;
+    color: #2E6858;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  .social-proof-text span {
+    font-weight: 600;
+  }
+
+  /* Title */
+  .product-title {
+    font-family: 'Gazpacho', 'Georgia', serif;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #2E6858;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .product-title sup {
+    font-size: 14px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  /* Divider */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: #d4e8ce;
+    margin-bottom: 16px;
+  }
+
+  /* Description */
+  .product-description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #2E6858;
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  /* ─── BENEFITS USP ROW ─── */
+  .benefits-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 0 22px 24px;
+  }
+
+  .benefit-card {
+    background: #ddf2d6;
+    border-radius: 12px;
+    padding: 14px 6px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .benefit-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .benefit-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .benefit-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    line-height: 1.3;
+    color: #2E6858;
+    font-weight: 500;
+  }
+
+  /* ─── BOTTOM SEPARATOR ─── */
+  .section-end {
+    height: 8px;
+    background: #efffe9;
+  }
+
+  /* ─── MOCKUP LABEL ─── */
+  .mockup-label {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #2E6858;
+    color: #2E6858;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    z-index: 100;
+  }
+
+  /* ─── QUANTITY SELECTOR ─── */
+  .qty-selector {
+    padding: 24px 22px;
+  }
+
+  .qty-steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .qty-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .qty-step-badge {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #2E6858;
+    background: #d4e8ce;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    transform: rotate(-3deg);
+  }
+
+  .qty-step-badge.hidden {
+    visibility: hidden;
+  }
+
+  .qty-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #999;
+    position: relative;
+    z-index: 2;
+    transition: all 0.2s;
+  }
+
+  .qty-step.active .qty-circle {
+    background: #d4f5a0;
+    color: #2E6858;
+  }
+
+  /* Line between circles */
+  .qty-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: calc(8px + 3px + 22px); /* badge height + margin + half circle */
+    left: calc(50% + 22px);
+    width: calc(100% - 44px);
+    height: 3px;
+    background: #e0e0e0;
+    z-index: 1;
+  }
+
+  .qty-step-info {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .qty-step-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2E6858;
+  }
+
+  .qty-step-price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #555;
+    margin-top: 2px;
+  }
+
+  .qty-step-discount {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #2E6858;
+    margin-top: 2px;
+  }
+
+  /* ─── FLAVOR SELECTOR ─── */
+  .flavor-selector {
+    padding: 0 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .flavor-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: #fff;
+    position: relative;
+    border: 1px solid transparent;
+    transition: border-color 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .flavor-card:hover {
+    border-color: #bdf07d;
+  }
+
+  .flavor-card-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .flavor-img-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f3f4f6;
+    flex-shrink: 0;
+  }
+
+  .flavor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .flavor-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .flavor-badge {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    position: absolute;
+    top: -1px;
+    right: 14px;
+  }
+
+  .flavor-badge.green {
+    background: #bdf07d;
+    color: #2b5d44;
+  }
+
+  .flavor-badge.red {
+    background: #dc2626;
+    color: #fff;
+  }
+
+  .flavor-badge.orange {
+    background: #fee2e2;
+    color: #dc2626;
+  }
+
+  .flavor-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #2E6858;
+    line-height: 1.3;
+  }
+
+  .flavor-btn {
+    background: #1e4431;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+
+  .flavor-btn:hover {
+    background: #2b5d44;
+  }
+
+  /* ════════════════════════════════════════
+     DESKTOP (768px+)
+     ════════════════════════════════════════ */
+  @media (min-width: 768px) {
+
+    .header img {
+      height: 34px;
+    }
+
+    .pdp-wrapper {
+      padding: 40px 60px;
+    }
+
+    .pdp-hero {
+      flex-direction: row;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    /* Image column - square, sticky */
+    .hero-image-section {
+      flex: 0 0 55%;
+      max-width: 55%;
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .hero-img-mobile {
+      display: none;
+    }
+
+    .hero-img-desktop {
+      display: block;
+    }
+
+    .carousel-arrow {
+      width: 42px;
+      height: 42px;
+    }
+
+    .carousel-arrow.left { left: 16px; }
+    .carousel-arrow.right { right: 16px; }
+
+    .carousel-dots {
+      bottom: 20px;
+    }
+
+    .carousel-dots .dot {
+      width: 8px;
+      height: 8px;
+    }
+
+    .carousel-dots .dot.active {
+      width: 24px;
+    }
+
+    /* Content column */
+    .content-column {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .content-section {
+      padding: 0;
+    }
+
+    .social-proof {
+      margin-bottom: 20px;
+    }
+
+    .stars svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .social-proof-text {
+      font-size: 13px;
+    }
+
+    .product-title {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .product-title sup {
+      font-size: 16px;
+    }
+
+    .divider {
+      margin-bottom: 20px;
+    }
+
+    .product-description {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .benefits-row {
+      padding: 0;
+      gap: 12px;
+    }
+
+    .benefit-card {
+      padding: 18px 10px 16px;
+      border-radius: 14px;
+    }
+
+    .benefit-icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    .benefit-label {
+      font-size: 12px;
+    }
+
+    .section-end {
+      display: none;
+    }
+  }
+
+  /* ─── Large desktop ─── */
+  @media (min-width: 1200px) {
+    .pdp-wrapper {
+      padding: 48px 80px;
+    }
+
+    .pdp-hero {
+      gap: 60px;
+    }
+
+    .product-title {
+      font-size: 36px;
+    }
+
+    .product-description {
+      font-size: 17px;
+    }
+  }
+</style>
+</head>
+<body>
+
+
+<!-- HEADER -->
+<div class="header">
+  <img src="https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/pRz5kxGLDHEHPhqY/logo-green.png?width=1920" alt="Blessy">
+</div>
+
+<div class="pdp-wrapper">
+  <div class="pdp-hero">
+
+    <!-- IMAGE COLUMN -->
+    <div class="hero-image-section">
+      <!-- Mobile: imagem landscape/achatada -->
+      <img class="hero-img-mobile" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_100px.png" alt="Blessy Suco Verde">
+      <!-- Desktop: imagem quadrada -->
+      <img class="hero-img-desktop" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_desktop.png" alt="Blessy Suco Verde">
+
+      <div class="carousel-arrow left">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="carousel-arrow right">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+
+      <div class="carousel-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- CONTENT COLUMN -->
+    <div class="content-column">
+      <div class="content-section">
+
+        <!-- Social Proof -->
+        <div class="social-proof">
+          <div class="stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <span class="social-proof-text"><span>+80.000 besties</span> com a vida + leve</span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="product-title">BLESSY<sup>&reg;</sup> - Suco Verde Natural em P&oacute; com +36 Greens &amp; Superfoods - Digest&atilde;o, Energia e Zero Incha&ccedil;o</h1>
+
+        <div class="divider"></div>
+
+        <!-- Description -->
+        <p class="product-description">Feita com 36 ingredientes selecionados que o corpo da mulher ama, Blessy vai aliviar seu incha&ccedil;o, regular sua digest&atilde;o e te dar energia com muuuuito sabor.</p>
+
+      </div>
+
+      <!-- BENEFITS -->
+      <div class="benefits-row">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <img src="https://useblessy.com.br/cdn/shop/files/icon_01.png?v=1770319029&width=180" alt="redução do inchaço">
+          </div>
+          <span class="benefit-label">redução do inchaço</span>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <img src="https://useblessy.com.br/cdn/shop/files/icon_02.png?v=1770319029&width=180" alt="melhora da digestão">
+          </div>
+          <span class="benefit-label">melhora da digestão</span>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <img src="https://useblessy.com.br/cdn/shop/files/icon_03.png?v=1770319028&width=180" alt="mais energia">
+          </div>
+          <span class="benefit-label">mais energia</span>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <img src="https://useblessy.com.br/cdn/shop/files/icon_04.png?v=1770319029&width=180" alt="equilíbrio do humor">
+          </div>
+          <span class="benefit-label">equilíbrio do humor</span>
+        </div>
+      </div>
+
+      <!-- QUANTITY SELECTOR -->
+      <div class="qty-selector">
+        <div class="qty-steps">
+          <div class="qty-step active">
+            <div class="qty-step-badge hidden">Frete grátis</div>
+            <div class="qty-circle">1</div>
+            <div class="qty-step-info">
+              <div class="qty-step-label">1 pote</div>
+              <div class="qty-step-price">R$189,90/pote</div>
+            </div>
+          </div>
+          <div class="qty-step">
+            <div class="qty-step-badge">Frete grátis</div>
+            <div class="qty-circle">2</div>
+            <div class="qty-step-info">
+              <div class="qty-step-label">2 potes</div>
+              <div class="qty-step-price">R$163,50/pote</div>
+              <div class="qty-step-discount">14% OFF</div>
+            </div>
+          </div>
+          <div class="qty-step">
+            <div class="qty-step-badge">Frete grátis</div>
+            <div class="qty-circle">3</div>
+            <div class="qty-step-info">
+              <div class="qty-step-label">3 potes</div>
+              <div class="qty-step-price">R$142,33/pote</div>
+              <div class="qty-step-discount">25% OFF</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLAVOR SELECTOR -->
+      <div class="flavor-selector">
+        <div class="flavor-card">
+          <div class="flavor-badge green">Mais vendido</div>
+          <div class="flavor-card-left">
+            <div class="flavor-img-wrap">
+              <img class="flavor-img" src="blessy-abacaxi-mockup.png" alt="Blessy Greens Abacaxi">
+            </div>
+            <div class="flavor-info">
+              <div class="flavor-name">Blessy Greens | Abacaxi</div>
+            </div>
+          </div>
+          <button class="flavor-btn">Adicionar</button>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-badge red">Vendendo rápido</div>
+          <div class="flavor-card-left">
+            <div class="flavor-img-wrap">
+              <img class="flavor-img" src="blessy-melancia-mockup.png" alt="Blessy Greens Melancia">
+            </div>
+            <div class="flavor-info">
+              <div class="flavor-name">Blessy Greens | Melancia</div>
+            </div>
+          </div>
+          <button class="flavor-btn">Adicionar</button>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-badge orange">Estoque limitado</div>
+          <div class="flavor-card-left">
+            <div class="flavor-img-wrap">
+              <img class="flavor-img" src="blessy-limao-mockup.png" alt="Blessy Greens Limão">
+            </div>
+            <div class="flavor-info">
+              <div class="flavor-name">Blessy Greens | Limão</div>
+            </div>
+          </div>
+          <button class="flavor-btn">Adicionar</button>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-card-left">
+            <div class="flavor-img-wrap">
+              <img class="flavor-img" src="blessy-manga-mockup.png" alt="Blessy Greens Manga">
+            </div>
+            <div class="flavor-info">
+              <div class="flavor-name">Blessy Greens | Manga</div>
+            </div>
+          </div>
+          <button class="flavor-btn">Adicionar</button>
+        </div>
+      </div>
+
+      <div class="section-end"></div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
