@@ -851,6 +851,32 @@
     fill: #FBBC04;
   }
 
+  /* ─── TOAST NOTIFICATION ─── */
+  .flavor-toast {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    z-index: 9999;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    animation: toast-in-out 2.2s ease forwards;
+    pointer-events: none;
+  }
+
+  @keyframes toast-in-out {
+    0% { top: -60px; opacity: 0; }
+    15% { top: 20px; opacity: 1; }
+    75% { top: 20px; opacity: 1; }
+    100% { top: -60px; opacity: 0; }
+  }
+
   .cta-btn.disabled {
     background: #8aab7a;
     cursor: not-allowed;
@@ -1314,6 +1340,34 @@
   const discountTagText = document.getElementById('discountTagText');
   const ctaBtn = document.querySelector('.cta-btn');
 
+  const FLAVOR_COLORS = {
+    'Abacaxi c/ Hortelã': '#7ac943',
+    'Melancia': '#e84c6a',
+    'Limão': '#f5d020',
+    'Manga': '#f7941d'
+  };
+
+  const FLAVOR_EMOJIS = {
+    'Abacaxi c/ Hortelã': '🍍',
+    'Melancia': '🍉',
+    'Limão': '🍋',
+    'Manga': '🥭'
+  };
+
+  function showToast(name) {
+    var existing = document.querySelector('.flavor-toast');
+    if (existing) existing.remove();
+
+    var toast = document.createElement('div');
+    toast.className = 'flavor-toast';
+    var emoji = FLAVOR_EMOJIS[name] || '✨';
+    var color = FLAVOR_COLORS[name] || '#2E6858';
+    toast.style.background = color;
+    toast.textContent = emoji + ' + ' + name + ' ' + emoji;
+    document.body.appendChild(toast);
+    setTimeout(function() { toast.remove(); }, 2500);
+  }
+
   const FULL_PRICE = 189.90;
   const FLAVOR_IMAGES = {
     'Abacaxi c/ Hortelã': 'blessy-abacaxi-mockup.png',
@@ -1373,6 +1427,7 @@
       card.classList.remove('selected');
       actionArea.querySelector('.flavor-btn').addEventListener('click', function() {
         cart[name] = 1;
+        showToast(name);
         updateUI();
       });
     } else {
