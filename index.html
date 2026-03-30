@@ -749,6 +749,239 @@
     }
   }
 
+  /* ─── SECTION NUTRIÇÃO ─── */
+  .section-nutrition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 66px;
+    padding: 70px 30px;
+    background-color: #BFF9A4;
+    width: 100%;
+  }
+
+  .section-nutrition__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 66px;
+    padding: 0 0 70px;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #BFF9A4;
+    border-radius: 20px;
+  }
+
+  .section-nutrition__banner {
+    width: 100%;
+    height: 450px;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+  }
+
+  .section-nutrition__banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .section-nutrition__banner-img--desktop { display: block; }
+  .section-nutrition__banner-img--mobile { display: none; }
+
+  .section-nutrition__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 66px;
+    padding: 0 30px;
+    width: 100%;
+  }
+
+  .section-nutrition__left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    flex: 1 1 0%;
+  }
+
+  .section-nutrition__text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .section-nutrition__title {
+    font-family: 'Gazpacho', Georgia, serif;
+    font-size: 35px;
+    font-weight: 700;
+    color: rgb(62, 104, 88);
+    line-height: 1.21;
+  }
+
+  .section-nutrition__subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: rgb(62, 104, 88);
+    line-height: 1.36;
+    max-width: 428px;
+  }
+
+  .section-nutrition__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 21px 50px;
+    background-color: rgb(29, 107, 77);
+    border: 1px solid rgb(34, 34, 34);
+    border-radius: 96px;
+    box-shadow: 3px 7px 0px 0px rgb(0, 0, 0);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .section-nutrition__cta:hover {
+    border: 2px solid #BFF9A4;
+    box-shadow: 0px 6px 4px rgba(0,0,0,0.15);
+    transform: translateY(-3px);
+  }
+
+  .section-nutrition__cta-text {
+    font-family: 'Gazpacho', Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(235, 255, 225);
+    line-height: 1.15;
+  }
+
+  .section-nutrition__cta-icon {
+    width: 25px;
+    height: 25px;
+    color: rgb(235, 255, 225);
+    flex-shrink: 0;
+  }
+
+  .section-nutrition__stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .section-nutrition__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 272px;
+  }
+
+  .section-nutrition__stat:last-child { width: 292px; }
+
+  .section-nutrition__stat-number {
+    font-family: 'Gazpacho', Georgia, serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: rgb(62, 104, 88);
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .section-nutrition__stat-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: rgb(62, 104, 88);
+    line-height: 1.22;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .section-nutrition__banner { height: 266px; }
+    .section-nutrition__content { gap: 20px; }
+  }
+
+  @media (max-width: 575px) {
+    .section-nutrition {
+      background-color: #EBFFE4;
+      border-radius: 80px;
+      padding: 0;
+      gap: 40px;
+    }
+
+    .section-nutrition__inner {
+      border-radius: 60px;
+      gap: 30px;
+    }
+
+    .section-nutrition__banner {
+      border-radius: 60px 60px 0 0;
+      height: auto;
+    }
+
+    .section-nutrition__banner-img--desktop { display: none; }
+    .section-nutrition__banner-img--mobile { display: block; }
+
+    .section-nutrition__content {
+      flex-direction: column;
+      padding: 0 30px;
+      gap: 20px;
+    }
+
+    .section-nutrition__left {
+      align-items: center;
+      align-self: stretch;
+    }
+
+    .section-nutrition__text-group {
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-nutrition__title {
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .section-nutrition__subtitle {
+      text-align: center;
+      width: 250px;
+    }
+
+    .section-nutrition__cta {
+      align-self: stretch;
+      justify-content: center;
+    }
+
+    .section-nutrition__stats {
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .section-nutrition__stat,
+    .section-nutrition__stat:last-child {
+      border: 1px solid rgb(62, 104, 88);
+      border-radius: 20px;
+      padding: 35px 30px;
+      align-self: stretch;
+      width: auto;
+      flex-direction: row;
+      gap: 10px;
+    }
+
+    .section-nutrition__stat-number {
+      font-size: 30px;
+    }
+
+    .section-nutrition__stat-desc {
+      flex: 1;
+      text-align: left;
+    }
+  }
+
   /* ─── FAQ ACCORDION ─── */
   .faq-section {
     padding: 8px 22px 24px;
@@ -1833,6 +2066,57 @@
         </div>
         <div class="benefit-card-v3__title">pro corpo e pra mente</div>
         <div class="benefit-card-v3__description">as vitaminas do complexo B, C e D contribuem para a concentração e a saúde mental.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION: NUTRIÇÃO ========== -->
+<section class="section-nutrition">
+  <div class="section-nutrition__inner">
+    <div class="section-nutrition__banner">
+      <img class="section-nutrition__banner-img section-nutrition__banner-img--desktop" alt="Mulher sorrindo segurando produtos Blessy" sizes="(max-width: 1280px) 100vw, 1280px" srcset="
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/h872alf8lSBB7z09/banner-blessy.jpg?width=360 360w,
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/h872alf8lSBB7z09/banner-blessy.jpg?width=640 640w,
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/h872alf8lSBB7z09/banner-blessy.jpg?width=750 750w,
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/h872alf8lSBB7z09/banner-blessy.jpg?width=1080 1080w,
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/h872alf8lSBB7z09/banner-blessy.jpg?width=1280 1280w
+      " src="https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/h872alf8lSBB7z09/banner-blessy.jpg?width=1280" width="1200" height="450" loading="lazy" decoding="async">
+      <img class="section-nutrition__banner-img section-nutrition__banner-img--mobile" alt="Mulher sorrindo segurando produtos Blessy" sizes="(max-width: 750px) 100vw, 750px" srcset="
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/Ad87JZVVauoAzw4N/blessy-nat-916-2.jpg?width=360 360w,
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/Ad87JZVVauoAzw4N/blessy-nat-916-2.jpg?width=640 640w,
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/Ad87JZVVauoAzw4N/blessy-nat-916-2.jpg?width=750 750w
+      " src="https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/Ad87JZVVauoAzw4N/blessy-nat-916-2.jpg?width=750" width="739" height="429" loading="lazy" decoding="async">
+    </div>
+
+    <div class="section-nutrition__content">
+      <div class="section-nutrition__left">
+        <div class="section-nutrition__text-group">
+          <div class="section-nutrition__title">
+            <p>tudo que tá faltando,</p>
+            <p>a Blessy tem</p>
+          </div>
+          <div class="section-nutrition__subtitle">
+            <p><strong>nutrição inteligente</strong> que completa sua alimentação.</p>
+          </div>
+        </div>
+        <a class="section-nutrition__cta" href="#comprar">
+          <span class="section-nutrition__cta-text">eu quero a ajuda da Blessy</span>
+          <svg class="section-nutrition__cta-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M136,120v56a8,8,0,0,1-16,0V120a8,8,0,0,1,16,0ZM239.86,98.11,226,202.12A16,16,0,0,1,210.13,216H45.87A16,16,0,0,1,30,202.12l-13.87-104A16,16,0,0,1,32,80H68.37L122,18.73a8,8,0,0,1,12,0L187.63,80H224a16,16,0,0,1,15.85,18.11ZM89.63,80h76.74L128,36.15ZM224,96H32L45.87,200H210.13Zm-51.16,23.2-5.6,56A8,8,0,0,0,174.4,184a7.44,7.44,0,0,0,.81,0,8,8,0,0,0,7.95-7.2l5.6-56a8,8,0,0,0-15.92-1.6Zm-89.68,0a8,8,0,0,0-15.92,1.6l5.6,56a8,8,0,0,0,8,7.2,7.44,7.44,0,0,0,.81,0,8,8,0,0,0,7.16-8.76Z"></path>
+          </svg>
+        </a>
+      </div>
+
+      <div class="section-nutrition__stats">
+        <div class="section-nutrition__stat">
+          <div class="section-nutrition__stat-number">70%</div>
+          <div class="section-nutrition__stat-desc">das brasileiras sofrem diariamente com <strong>problemas de inchaço</strong>, digestão, dor abdominal, ou constipação.</div>
+        </div>
+        <div class="section-nutrition__stat">
+          <div class="section-nutrition__stat-number">87%</div>
+          <div class="section-nutrition__stat-desc">das mulheres brasileiras <strong>não consomem a quantidade diária de nutrientes</strong>, incluindo as vitaminas e minerais que a <strong>Blessy</strong> tem.</div>
+        </div>
       </div>
     </div>
   </div>
