@@ -258,6 +258,18 @@
     border: 1px solid #e0e0e0;
   }
 
+  .order-left {
+    flex-shrink: 0;
+  }
+
+  .order-per-unit {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #2E6858;
+    white-space: nowrap;
+  }
+
   .order-prices {
     display: flex;
     align-items: baseline;
@@ -332,12 +344,12 @@
   .discount-tag-inner {
     display: inline-block;
     font-family: 'Poppins', sans-serif;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    padding: 6px 16px;
-    border-radius: 8px;
+    padding: 4px 12px;
+    border-radius: 6px;
     background: #bdf07d;
     color: #2b5d44;
   }
@@ -1237,13 +1249,15 @@
       <!-- ORDER SUMMARY -->
       <div class="order-summary">
         <div class="order-summary-card">
-          <div class="order-prices">
-            <span class="order-price-original" id="orderOriginal"></span>
-            <span class="order-price-final" id="orderPrice">R$ 0,00</span>
+          <div class="order-left">
+            <span class="order-per-unit" id="orderPerUnit">R$ 189,90/pote</span>
           </div>
           <div class="order-right">
             <div class="order-thumbs" id="orderThumbs"></div>
-            <div class="order-status" id="orderStatus">Nenhum item adicionado!</div>
+            <div class="order-prices">
+              <span class="order-price-original" id="orderOriginal"></span>
+              <span class="order-price-final" id="orderPrice">R$ 0,00</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1292,6 +1306,7 @@
   const flavorCards = document.querySelectorAll('.flavor-card');
   const orderPrice = document.getElementById('orderPrice');
   const orderOriginal = document.getElementById('orderOriginal');
+  const orderPerUnit = document.getElementById('orderPerUnit');
   const orderStatus = document.getElementById('orderStatus');
   const orderThumbs = document.getElementById('orderThumbs');
   const discountTag = document.getElementById('discountTag');
@@ -1410,11 +1425,12 @@
     });
     selectedQty = autoStep + 1;
 
-    // Order summary prices
+    // Order summary
+    orderPerUnit.textContent = formatBRL(disc.perUnit) + '/pote';
+
     if (items === 0) {
       orderOriginal.textContent = '';
-      orderPrice.textContent = 'R$ 0,00';
-      orderStatus.textContent = 'Nenhum item adicionado!';
+      orderPrice.textContent = '';
       orderThumbs.innerHTML = '';
     } else {
       if (disc.pct > 0) {
@@ -1432,7 +1448,6 @@
         }
       });
       orderThumbs.innerHTML = thumbsHtml;
-      orderStatus.innerHTML = '<a href="#">Ver todos</a>';
     }
 
     // Discount tag
