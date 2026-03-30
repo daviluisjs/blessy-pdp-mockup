@@ -969,25 +969,28 @@
     .section-nutrition__stat,
     .section-nutrition__stat:last-child {
       background-color: #fae76f;
-      border: none;
-      border-radius: 20px;
-      padding: 35px 30px;
+      border: 1.5px solid rgb(62, 104, 88);
+      border-radius: 16px;
+      padding: 24px 20px;
       align-self: stretch;
       width: auto;
       flex-direction: row;
-      gap: 15px;
+      align-items: center;
+      gap: 16px;
     }
 
     .section-nutrition__stat-number {
-      font-size: 30px;
+      font-size: 28px;
       flex-shrink: 0;
+      min-width: 60px;
     }
 
     .section-nutrition__stat-desc {
       flex: 1;
       text-align: left;
       font-family: 'Inter', sans-serif;
-      font-size: 16px;
+      font-size: 15px;
+      line-height: 1.4;
     }
 
     .section-nutrition__cta {
