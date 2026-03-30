@@ -968,21 +968,36 @@
 
     .section-nutrition__stat,
     .section-nutrition__stat:last-child {
-      border: 1px solid rgb(62, 104, 88);
+      background-color: #fae76f;
+      border: none;
       border-radius: 20px;
       padding: 35px 30px;
       align-self: stretch;
       width: auto;
       flex-direction: row;
-      gap: 10px;
+      gap: 15px;
     }
 
     .section-nutrition__stat-number {
       font-size: 30px;
+      flex-shrink: 0;
     }
 
     .section-nutrition__stat-desc {
       flex: 1;
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+    }
+
+    .section-nutrition__cta {
+      padding: 21px 30px;
+      justify-content: space-between;
+    }
+
+    .section-nutrition__cta-text {
+      font-family: 'Gazpacho', Georgia, serif;
+      font-size: 18px;
       text-align: left;
     }
   }
