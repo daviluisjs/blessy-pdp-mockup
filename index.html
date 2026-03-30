@@ -509,11 +509,15 @@
     color: #2E6858;
   }
 
-  /* Line between circles */
+  /* Line between circles — aligned to circle center via JS-set var */
+  .qty-steps {
+    --line-top: 0px;
+  }
+
   .qty-step:not(:last-child)::after {
     content: '';
     position: absolute;
-    top: calc(8px + 3px + 22px); /* badge height + margin + half circle */
+    top: var(--line-top);
     left: calc(50% + 22px);
     width: calc(100% - 44px);
     height: 3px;
@@ -1435,6 +1439,18 @@
       updateUI();
     });
   });
+
+  // Align connector lines to circle center
+  function alignLines() {
+    var step = document.querySelector('.qty-step');
+    var circle = step.querySelector('.qty-circle');
+    if (step && circle) {
+      var lineTop = circle.offsetTop + circle.offsetHeight / 2;
+      document.querySelector('.qty-steps').style.setProperty('--line-top', lineTop + 'px');
+    }
+  }
+  alignLines();
+  window.addEventListener('resize', alignLines);
 
   // Init
   updateUI();
