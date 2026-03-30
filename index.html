@@ -1125,6 +1125,7 @@
       </div>
 
       <!-- FLAVOR SELECTOR -->
+      <div style="padding: 0 22px 12px; font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; color: #2E6858;">Selecione os sabores</div>
       <div class="flavor-selector">
         <div class="flavor-card">
           <div class="flavor-badge green">Mais vendido</div>
@@ -1133,7 +1134,7 @@
               <img class="flavor-img" src="blessy-abacaxi-mockup.png" alt="Blessy Greens Abacaxi">
             </div>
             <div class="flavor-info">
-              <div class="flavor-name">Blessy Greens | Abacaxi</div>
+              <div class="flavor-name">Abacaxi</div>
             </div>
           </div>
           <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
@@ -1145,7 +1146,7 @@
               <img class="flavor-img" src="blessy-melancia-mockup.png" alt="Blessy Greens Melancia">
             </div>
             <div class="flavor-info">
-              <div class="flavor-name">Blessy Greens | Melancia</div>
+              <div class="flavor-name">Melancia</div>
             </div>
           </div>
           <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
@@ -1157,7 +1158,7 @@
               <img class="flavor-img" src="blessy-limao-mockup.png" alt="Blessy Greens Limão">
             </div>
             <div class="flavor-info">
-              <div class="flavor-name">Blessy Greens | Limão</div>
+              <div class="flavor-name">Limão</div>
             </div>
           </div>
           <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
@@ -1168,7 +1169,7 @@
               <img class="flavor-img" src="blessy-manga-mockup.png" alt="Blessy Greens Manga">
             </div>
             <div class="flavor-info">
-              <div class="flavor-name">Blessy Greens | Manga</div>
+              <div class="flavor-name">Manga</div>
             </div>
           </div>
           <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
@@ -1180,7 +1181,7 @@
             <img src="blessy-abacaxi-mockup.png" alt="Blessy Greens Abacaxi">
           </div>
           <div class="flavor-card-v2-content">
-            <span class="flavor-name">Blessy Greens | Abacaxi com Hortelã</span>
+            <span class="flavor-name">Abacaxi com Hortelã</span>
             <div class="flavor-card-v2-right">
               <div class="flavor-v2-badge">Mais vendido</div>
               <div class="flavor-v2-actions" id="v2Actions">
@@ -1246,7 +1247,7 @@
   };
 
   let selectedQty = 1;
-  // { name: qty } — e.g. { "Blessy Greens | Abacaxi": 2 }
+  // { name: qty } — e.g. { "Abacaxi": 2 }
   let cart = {};
 
   const qtySteps = document.querySelectorAll('.qty-step');
@@ -1261,10 +1262,10 @@
 
   const FULL_PRICE = 189.90;
   const FLAVOR_IMAGES = {
-    'Blessy Greens | Abacaxi': 'blessy-abacaxi-mockup.png',
-    'Blessy Greens | Melancia': 'blessy-melancia-mockup.png',
-    'Blessy Greens | Limão': 'blessy-limao-mockup.png',
-    'Blessy Greens | Manga': 'blessy-manga-mockup.png'
+    'Abacaxi': 'blessy-abacaxi-mockup.png',
+    'Melancia': 'blessy-melancia-mockup.png',
+    'Limão': 'blessy-limao-mockup.png',
+    'Manga': 'blessy-manga-mockup.png'
   };
 
   function formatBRL(v) {
