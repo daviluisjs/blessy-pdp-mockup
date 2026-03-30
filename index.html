@@ -457,6 +457,186 @@
     font-weight: 400;
   }
 
+  /* ─── SECTION BENEFÍCIOS ─── */
+  .section-benefits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 76px;
+    padding: 80px 50px;
+    background: #ffffff;
+    width: 100%;
+  }
+
+  .section-benefits__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 763px;
+  }
+
+  .section-benefits__title {
+    font-family: 'Gazpacho', Georgia, serif;
+    font-size: 35px;
+    font-weight: 700;
+    color: rgb(29, 107, 77);
+    text-align: center;
+    line-height: 1.15;
+  }
+
+  .section-benefits__subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: rgb(62, 104, 88);
+    text-align: center;
+    line-height: 1.36;
+  }
+
+  .benefits-grid-v2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .benefits-grid-v2__side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 80 1 0%;
+    gap: 75px;
+  }
+
+  .benefits-grid-v2__side--right {
+    gap: 36px;
+  }
+
+  .benefits-grid-v2__center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 100 1 0%;
+    border-radius: 20px;
+  }
+
+  .benefits-grid-v2__center img {
+    width: 100%;
+    max-width: 642px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .benefit-card-v3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 19px;
+    width: 297px;
+    max-width: 100%;
+  }
+
+  .benefit-card-v3--compact { gap: 5px; }
+  .benefit-card-v3--compact-gap { gap: 10px; }
+
+  .benefit-card-v3__icon {
+    width: 57px;
+    height: 57px;
+    flex-shrink: 0;
+  }
+
+  .benefit-card-v3__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .benefit-card-v3__icon--energy { width: 56px; height: 70px; }
+  .benefit-card-v3__icon--health { width: 63px; height: 63px; }
+  .benefit-card-v3__icon--mind { width: 70px; height: 73px; }
+
+  .benefit-card-v3__title {
+    font-family: 'Gazpacho', Georgia, serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: rgb(62, 104, 88);
+    text-align: center;
+    line-height: 1.15;
+    align-self: stretch;
+  }
+
+  .benefit-card-v3__description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: rgb(62, 104, 88);
+    text-align: center;
+    line-height: 1.22;
+    align-self: stretch;
+  }
+
+  @media (max-width: 768px) {
+    .section-benefits {
+      padding: 80px 50px;
+    }
+
+    .benefits-grid-v2 {
+      flex-direction: column;
+      row-gap: 72px;
+    }
+
+    .benefits-grid-v2__side {
+      align-self: stretch;
+      gap: 50px;
+      flex: 0 1 auto;
+      flex-direction: row;
+    }
+
+    .benefits-grid-v2__side--right {
+      flex-direction: row;
+    }
+
+    .benefits-grid-v2__center {
+      min-height: 300px;
+    }
+
+    .benefit-card-v3__icon {
+      margin-bottom: 15px;
+      min-height: 64px;
+      width: 64px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .section-benefits {
+      gap: 40px;
+      padding: 60px 20px;
+    }
+
+    .section-benefits__title {
+      font-size: 29px;
+    }
+
+    .benefits-grid-v2 {
+      row-gap: 30px;
+    }
+
+    .benefits-grid-v2__side,
+    .benefits-grid-v2__side--right {
+      gap: 35px;
+      flex-direction: column;
+    }
+
+    .benefit-card-v3__description {
+      line-height: 1.35;
+    }
+  }
+
   /* ─── FAQ ACCORDION ─── */
   .faq-section {
     padding: 8px 22px 24px;
@@ -1481,6 +1661,70 @@
 
   </div>
 </div>
+
+<!-- ========== SECTION: BENEFÍCIOS ========== -->
+<section class="section-benefits">
+  <div class="section-benefits__header">
+    <div class="section-benefits__title">
+      finalmente, um intestino que te faz feliz
+    </div>
+    <div class="section-benefits__subtitle">
+      <strong>+30.000</strong> publicações científicas comprovam a <strong>eficácia dos ingredientes</strong> da Blessy.
+    </div>
+  </div>
+
+  <div class="benefits-grid-v2">
+    <!-- Coluna Esquerda -->
+    <div class="benefits-grid-v2__side">
+      <div class="benefit-card-v3">
+        <div class="benefit-card-v3__icon">
+          <img alt="Ícone adeus inchaço" src="https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/L79cmOih6YMs2dq4/1071889e70218fc7603c3e72c0b73fe2d84cef00.svg" width="57" height="57" loading="lazy">
+        </div>
+        <div class="benefit-card-v3__title">adeus inchaço</div>
+        <div class="benefit-card-v3__description">os prebióticos alimentam as <strong>bactérias boas</strong>, <strong>aumentando a absorção de nutrientes</strong> e a digestão.</div>
+      </div>
+
+      <div class="benefit-card-v3 benefit-card-v3--compact">
+        <div class="benefit-card-v3__icon benefit-card-v3__icon--energy">
+          <img alt="Ícone disposição" src="https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/crtJNjOtPMRblSNS/cfc2487a5f24b43223f0be6300a73f5bc1109091.svg" width="56" height="70" loading="lazy">
+        </div>
+        <div class="benefit-card-v3__title">disposição no dia a dia</div>
+        <div class="benefit-card-v3__description">auxilia na <strong>recuperação</strong>, energia sem rebote, e metabolismo. (tem matcha!)</div>
+      </div>
+    </div>
+
+    <!-- Coluna Central (Imagem) -->
+    <div class="benefits-grid-v2__center">
+      <img alt="Mulher bebendo Blessy Greens" sizes="(max-width: 1280px) 100vw, 1280px" srcset="
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/ywD9p8lJdxMKyvpD/mask-renata.png?width=360 360w,
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/ywD9p8lJdxMKyvpD/mask-renata.png?width=640 640w,
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/ywD9p8lJdxMKyvpD/mask-renata.png?width=750 750w,
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/ywD9p8lJdxMKyvpD/mask-renata.png?width=828 828w,
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/ywD9p8lJdxMKyvpD/mask-renata.png?width=1080 1080w,
+        https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/ywD9p8lJdxMKyvpD/mask-renata.png?width=1280 1280w
+      " src="https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/ywD9p8lJdxMKyvpD/mask-renata.png?width=1280" width="642" height="658" loading="lazy" decoding="async">
+    </div>
+
+    <!-- Coluna Direita -->
+    <div class="benefits-grid-v2__side benefits-grid-v2__side--right">
+      <div class="benefit-card-v3 benefit-card-v3--compact">
+        <div class="benefit-card-v3__icon benefit-card-v3__icon--health">
+          <img alt="Ícone saúde" src="https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/VWPn23nOqEtOpNeh/4068b81ccad6bd6afc579ab06d13c182fa63ecb6.svg" width="63" height="63" loading="lazy">
+        </div>
+        <div class="benefit-card-v3__title">saúde que dá pra ver</div>
+        <div class="benefit-card-v3__description">fortalece o sistema imunológico, cabelos, unha, pele, com as vitaminas do complexo C, A, E, biotina, zinco...</div>
+      </div>
+
+      <div class="benefit-card-v3 benefit-card-v3--compact-gap">
+        <div class="benefit-card-v3__icon benefit-card-v3__icon--mind">
+          <img alt="Ícone mente" src="https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/8W0oL1phK8OeRFGf/e4751c488f2be127afedcf0058de1bd55d854d79.svg" width="70" height="73" loading="lazy">
+        </div>
+        <div class="benefit-card-v3__title">pro corpo e pra mente</div>
+        <div class="benefit-card-v3__description">as vitaminas do complexo B, C e D contribuem para a concentração e a saúde mental.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <script>
 (function() {
