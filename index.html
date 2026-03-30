@@ -261,12 +261,14 @@
   .order-prices {
     display: flex;
     align-items: baseline;
-    gap: 8px;
+    gap: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .order-price-original {
     font-family: 'Poppins', sans-serif;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 500;
     color: #aaa;
     text-decoration: line-through;
@@ -274,7 +276,7 @@
 
   .order-price-final {
     font-family: 'Poppins', sans-serif;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 700;
     color: #1a1a1a;
   }
@@ -282,7 +284,8 @@
   .order-right {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    min-width: 0;
   }
 
   .order-thumbs {
@@ -291,8 +294,8 @@
   }
 
   .order-thumb {
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #fff;
