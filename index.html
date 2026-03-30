@@ -586,27 +586,52 @@
     background: #2b5d44;
   }
 
-  .flavor-btn.added {
-    background: #dc2626;
-  }
-
-  .flavor-btn.added:hover {
-    background: #b91c1c;
-  }
-
   .flavor-card.selected {
     border-color: #bdf07d;
     background: #f7fff3;
   }
 
-  .flavor-card.disabled .flavor-btn {
+  .cta-btn.disabled {
     background: #ccc;
     cursor: not-allowed;
   }
 
-  .cta-btn.disabled {
-    background: #ccc;
-    cursor: not-allowed;
+  /* ─── QUANTITY WIDGET (inside flavor card) ─── */
+  .flavor-qty-widget {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 30px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .flavor-qty-btn {
+    width: 38px;
+    height: 38px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2E6858;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.15s;
+  }
+
+  .flavor-qty-btn:hover {
+    background: #f0f0f0;
+  }
+
+  .flavor-qty-value {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    min-width: 28px;
+    text-align: center;
   }
 
   /* ════════════════════════════════════════
@@ -898,7 +923,7 @@
               <div class="flavor-name">Blessy Greens | Abacaxi</div>
             </div>
           </div>
-          <button class="flavor-btn">Incluir</button>
+          <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
         </div>
         <div class="flavor-card">
           <div class="flavor-badge red">Vendendo rápido</div>
@@ -910,7 +935,7 @@
               <div class="flavor-name">Blessy Greens | Melancia</div>
             </div>
           </div>
-          <button class="flavor-btn">Incluir</button>
+          <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
         </div>
         <div class="flavor-card">
           <div class="flavor-badge orange">Estoque limitado</div>
@@ -922,7 +947,7 @@
               <div class="flavor-name">Blessy Greens | Limão</div>
             </div>
           </div>
-          <button class="flavor-btn">Incluir</button>
+          <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
         </div>
         <div class="flavor-card">
           <div class="flavor-card-left">
@@ -933,7 +958,7 @@
               <div class="flavor-name">Blessy Greens | Manga</div>
             </div>
           </div>
-          <button class="flavor-btn">Incluir</button>
+          <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
         </div>
       </div>
 
@@ -972,15 +997,15 @@
 
 <script>
 (function() {
-  // ─── PRICING ───
   const PRICES = {
-    1: { perUnit: 189.90, label: '1 pote' },
-    2: { perUnit: 163.50, label: '2 potes' },
-    3: { perUnit: 142.33, label: '3 potes' }
+    1: { perUnit: 189.90 },
+    2: { perUnit: 163.50 },
+    3: { perUnit: 142.33 }
   };
 
   let selectedQty = 1;
-  let addedFlavors = [];
+  // { name: qty } — e.g. { "Blessy Greens | Abacaxi": 2 }
+  let cart = {};
 
   const qtySteps = document.querySelectorAll('.qty-step');
   const flavorCards = document.querySelectorAll('.flavor-card');
@@ -988,90 +1013,88 @@
   const orderStatus = document.getElementById('orderStatus');
   const ctaBtn = document.querySelector('.cta-btn');
 
-  function formatBRL(value) {
-    return 'R$ ' + value.toFixed(2).replace('.', ',');
+  function formatBRL(v) {
+    return 'R$ ' + v.toFixed(2).replace('.', ',');
+  }
+
+  function totalItems() {
+    return Object.values(cart).reduce((s, q) => s + q, 0);
+  }
+
+  function buildWidget(card, name) {
+    const actionArea = card.querySelector('.flavor-actions');
+    const qty = cart[name] || 0;
+
+    if (qty === 0) {
+      actionArea.innerHTML = '<div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>';
+      card.classList.remove('selected');
+      actionArea.querySelector('.flavor-btn').addEventListener('click', function() {
+        cart[name] = 1;
+        updateUI();
+      });
+    } else {
+      card.classList.add('selected');
+      actionArea.innerHTML =
+        '<div class="flavor-qty-widget">' +
+          '<button class="flavor-qty-btn minus" aria-label="Diminuir">' +
+            '<svg width="12" height="2" viewBox="0 0 12 2" fill="none"><path d="M0 1H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' +
+          '</button>' +
+          '<span class="flavor-qty-value">' + qty + '</span>' +
+          '<button class="flavor-qty-btn plus" aria-label="Aumentar">' +
+            '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' +
+          '</button>' +
+        '</div>';
+
+      actionArea.querySelector('.minus').addEventListener('click', function() {
+        cart[name]--;
+        if (cart[name] <= 0) delete cart[name];
+        updateUI();
+      });
+      actionArea.querySelector('.plus').addEventListener('click', function() {
+        cart[name]++;
+        updateUI();
+      });
+    }
   }
 
   function updateUI() {
-    const count = addedFlavors.length;
+    const items = totalItems();
     const price = PRICES[selectedQty];
-    const total = count * price.perUnit;
+    const total = items * price.perUnit;
 
     // Order summary
     orderPrice.textContent = formatBRL(total);
-    if (count === 0) {
+    if (items === 0) {
       orderStatus.textContent = 'Nenhum item adicionado!';
     } else {
-      const names = addedFlavors.map(f => f.replace('Blessy Greens | ', '')).join(', ');
-      orderStatus.textContent = count + ' de ' + selectedQty + ' · ' + names;
+      const parts = Object.entries(cart).map(function(e) {
+        return e[1] + 'x ' + e[0].replace('Blessy Greens | ', '');
+      });
+      orderStatus.textContent = items + (items === 1 ? ' pote' : ' potes') + ' · ' + parts.join(', ');
     }
 
-    // CTA button
-    if (count === 0) {
+    // CTA
+    if (items === 0) {
       ctaBtn.textContent = 'Finalizar Compra';
-      ctaBtn.classList.add('disabled');
-    } else if (count < selectedQty) {
-      ctaBtn.textContent = 'Selecione mais ' + (selectedQty - count) + ' sabor' + (selectedQty - count > 1 ? 'es' : '');
       ctaBtn.classList.add('disabled');
     } else {
       ctaBtn.textContent = 'Finalizar Compra · ' + formatBRL(total);
       ctaBtn.classList.remove('disabled');
     }
 
-    // Flavor cards state
-    flavorCards.forEach(card => {
-      const name = card.querySelector('.flavor-name').textContent;
-      const btn = card.querySelector('.flavor-btn');
-      const isAdded = addedFlavors.includes(name);
-      const isFull = addedFlavors.length >= selectedQty;
-
-      card.classList.toggle('selected', isAdded);
-      card.classList.toggle('disabled', !isAdded && isFull);
-
-      if (isAdded) {
-        btn.textContent = 'Remover';
-        btn.classList.add('added');
-      } else {
-        btn.textContent = 'Incluir';
-        btn.classList.remove('added');
-      }
+    // Rebuild flavor widgets
+    flavorCards.forEach(function(card) {
+      var name = card.querySelector('.flavor-name').textContent;
+      buildWidget(card, name);
     });
   }
 
   // ─── QTY STEP CLICKS ───
-  qtySteps.forEach((step, i) => {
+  qtySteps.forEach(function(step, i) {
     step.addEventListener('click', function() {
-      const qty = i + 1;
-      selectedQty = qty;
-
-      // Update active state
-      qtySteps.forEach(s => s.classList.remove('active'));
+      selectedQty = i + 1;
+      qtySteps.forEach(function(s) { s.classList.remove('active'); });
       step.classList.add('active');
-
-      // Trim flavors if new qty is less than current selections
-      while (addedFlavors.length > selectedQty) {
-        addedFlavors.pop();
-      }
-
-      updateUI();
-    });
-  });
-
-  // ─── FLAVOR BUTTON CLICKS ───
-  flavorCards.forEach(card => {
-    const btn = card.querySelector('.flavor-btn');
-    btn.addEventListener('click', function() {
-      const name = card.querySelector('.flavor-name').textContent;
-      const idx = addedFlavors.indexOf(name);
-
-      if (idx > -1) {
-        // Remove
-        addedFlavors.splice(idx, 1);
-      } else if (addedFlavors.length < selectedQty) {
-        // Add
-        addedFlavors.push(name);
-      }
-
       updateUI();
     });
   });
