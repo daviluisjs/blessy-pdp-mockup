@@ -1368,26 +1368,6 @@
           </div>
           <div class="flavor-actions"><button class="flavor-btn">Adicionar +</button></div>
         </div>
-
-        <!-- TESTE VISUAL: Card estilo Grüns -->
-        <div class="flavor-card-v2" id="v2Card">
-          <div class="flavor-card-v2-media">
-            <img src="blessy-abacaxi-mockup.webp" loading="lazy" width="112" height="112" alt="Blessy Greens Abacaxi">
-          </div>
-          <div class="flavor-card-v2-content">
-            <div><div class="flavor-line">Blessy Greens</div><span class="flavor-name">Abacaxi c/ Hortelã</span></div>
-            <div class="flavor-card-v2-right">
-              <div class="flavor-v2-badge">Mais vendido</div>
-              <div class="flavor-v2-actions" id="v2Actions">
-                <button class="flavor-v2-btn" id="v2AddBtn">Adicionar +</button>
-              </div>
-              <div class="flavor-v2-reviews">
-                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                <span>4.9 (+80.000)</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- ORDER SUMMARY -->
@@ -1772,37 +1752,6 @@
   // Init
   updateUI();
 
-  // ─── V2 CARD (Grüns style) ───
-  (function() {
-    var v2Actions = document.getElementById('v2Actions');
-    var v2Qty = 0;
-
-    function renderV2() {
-      if (v2Qty === 0) {
-        v2Actions.innerHTML = '<button class="flavor-v2-btn" id="v2AddBtn">Adicionar +</button>';
-        v2Actions.querySelector('#v2AddBtn').addEventListener('click', function() {
-          v2Qty = 1;
-          renderV2();
-        });
-      } else {
-        v2Actions.innerHTML =
-          '<div class="flavor-v2-stepper">' +
-            '<button class="v2-minus">\u2212</button>' +
-            '<span>' + v2Qty + '</span>' +
-            '<button class="v2-plus">+</button>' +
-          '</div>';
-        v2Actions.querySelector('.v2-minus').addEventListener('click', function() {
-          v2Qty = Math.max(0, v2Qty - 1);
-          renderV2();
-        });
-        v2Actions.querySelector('.v2-plus').addEventListener('click', function() {
-          v2Qty = Math.min(10, v2Qty + 1);
-          renderV2();
-        });
-      }
-    }
-    renderV2();
-  })();
 })();
 
 // ─── IMAGE CAROUSEL ───
