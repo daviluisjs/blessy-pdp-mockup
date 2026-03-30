@@ -316,16 +316,17 @@
 
   .guarantee-icon {
     flex-shrink: 0;
-    width: 56px;
-    height: 56px;
+    width: 72px;
+    height: 72px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .guarantee-icon svg {
+  .guarantee-icon img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
   }
 
   .guarantee-text {
@@ -583,6 +584,29 @@
 
   .flavor-btn:hover {
     background: #2b5d44;
+  }
+
+  .flavor-btn.added {
+    background: #dc2626;
+  }
+
+  .flavor-btn.added:hover {
+    background: #b91c1c;
+  }
+
+  .flavor-card.selected {
+    border-color: #bdf07d;
+    background: #f7fff3;
+  }
+
+  .flavor-card.disabled .flavor-btn {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .cta-btn.disabled {
+    background: #ccc;
+    cursor: not-allowed;
   }
 
   /* ════════════════════════════════════════
@@ -916,8 +940,8 @@
       <!-- ORDER SUMMARY -->
       <div class="order-summary">
         <div class="order-summary-card">
-          <div class="order-price">R$ 189,90</div>
-          <div class="order-status">1 pote selecionado</div>
+          <div class="order-price" id="orderPrice">R$ 0,00</div>
+          <div class="order-status" id="orderStatus">Nenhum item adicionado!</div>
         </div>
       </div>
 
@@ -930,11 +954,7 @@
       <div class="guarantee-section">
         <div class="guarantee-card">
           <div class="guarantee-icon">
-            <svg viewBox="0 0 64 64" fill="none">
-              <circle cx="32" cy="32" r="28" fill="#e8d5f5" stroke="#c9a0e0" stroke-width="2"/>
-              <path d="M32 18c-1 0-10 4-10 4v12c0 8 10 14 10 14s10-6 10-14V22s-9-4-10-4z" fill="#c9a0e0" stroke="#a070c0" stroke-width="1.5"/>
-              <path d="M28 33l3 3 5-6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
+            <img src="https://useblessy.com.br/cdn/shop/files/refund_icon_397730a1-f088-498b-a931-35ffaaba5dfa.png?v=1770931353&width=220" alt="" loading="lazy" width="78" height="78">
           </div>
           <div class="guarantee-text">
             <div class="label">Seu pedido está protegido por</div>
@@ -949,6 +969,117 @@
 
   </div>
 </div>
+
+<script>
+(function() {
+  // ─── PRICING ───
+  const PRICES = {
+    1: { perUnit: 189.90, label: '1 pote' },
+    2: { perUnit: 163.50, label: '2 potes' },
+    3: { perUnit: 142.33, label: '3 potes' }
+  };
+
+  let selectedQty = 1;
+  let addedFlavors = [];
+
+  const qtySteps = document.querySelectorAll('.qty-step');
+  const flavorCards = document.querySelectorAll('.flavor-card');
+  const orderPrice = document.getElementById('orderPrice');
+  const orderStatus = document.getElementById('orderStatus');
+  const ctaBtn = document.querySelector('.cta-btn');
+
+  function formatBRL(value) {
+    return 'R$ ' + value.toFixed(2).replace('.', ',');
+  }
+
+  function updateUI() {
+    const count = addedFlavors.length;
+    const price = PRICES[selectedQty];
+    const total = count * price.perUnit;
+
+    // Order summary
+    orderPrice.textContent = formatBRL(total);
+    if (count === 0) {
+      orderStatus.textContent = 'Nenhum item adicionado!';
+    } else {
+      const names = addedFlavors.map(f => f.replace('Blessy Greens | ', '')).join(', ');
+      orderStatus.textContent = count + ' de ' + selectedQty + ' · ' + names;
+    }
+
+    // CTA button
+    if (count === 0) {
+      ctaBtn.textContent = 'Finalizar Compra';
+      ctaBtn.classList.add('disabled');
+    } else if (count < selectedQty) {
+      ctaBtn.textContent = 'Selecione mais ' + (selectedQty - count) + ' sabor' + (selectedQty - count > 1 ? 'es' : '');
+      ctaBtn.classList.add('disabled');
+    } else {
+      ctaBtn.textContent = 'Finalizar Compra · ' + formatBRL(total);
+      ctaBtn.classList.remove('disabled');
+    }
+
+    // Flavor cards state
+    flavorCards.forEach(card => {
+      const name = card.querySelector('.flavor-name').textContent;
+      const btn = card.querySelector('.flavor-btn');
+      const isAdded = addedFlavors.includes(name);
+      const isFull = addedFlavors.length >= selectedQty;
+
+      card.classList.toggle('selected', isAdded);
+      card.classList.toggle('disabled', !isAdded && isFull);
+
+      if (isAdded) {
+        btn.textContent = 'Remover';
+        btn.classList.add('added');
+      } else {
+        btn.textContent = 'Adicionar';
+        btn.classList.remove('added');
+      }
+    });
+  }
+
+  // ─── QTY STEP CLICKS ───
+  qtySteps.forEach((step, i) => {
+    step.addEventListener('click', function() {
+      const qty = i + 1;
+      selectedQty = qty;
+
+      // Update active state
+      qtySteps.forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+
+      // Trim flavors if new qty is less than current selections
+      while (addedFlavors.length > selectedQty) {
+        addedFlavors.pop();
+      }
+
+      updateUI();
+    });
+  });
+
+  // ─── FLAVOR BUTTON CLICKS ───
+  flavorCards.forEach(card => {
+    const btn = card.querySelector('.flavor-btn');
+    btn.addEventListener('click', function() {
+      const name = card.querySelector('.flavor-name').textContent;
+      const idx = addedFlavors.indexOf(name);
+
+      if (idx > -1) {
+        // Remove
+        addedFlavors.splice(idx, 1);
+      } else if (addedFlavors.length < selectedQty) {
+        // Add
+        addedFlavors.push(name);
+      }
+
+      updateUI();
+    });
+  });
+
+  // Init
+  updateUI();
+})();
+</script>
 
 </body>
 </html>
