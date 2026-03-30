@@ -504,9 +504,20 @@
     transition: all 0.2s;
   }
 
-  .qty-step.active .qty-circle {
+  .qty-step.active .qty-circle,
+  .qty-step.reached .qty-circle {
     background: #d4f5a0;
     color: #2E6858;
+  }
+
+  .qty-step.reached .qty-step-badge,
+  .qty-step.active .qty-step-badge {
+    background: #2E6858;
+    color: #fff;
+  }
+
+  .qty-step.reached::after {
+    background: #d4f5a0 !important;
   }
 
   /* Line between circles — aligned to circle center via JS-set var */
@@ -1376,9 +1387,12 @@
     }
     lastTotal = items;
 
-    // Auto-select matching qty step
+    // Auto-select matching qty step + mark reached
     var autoStep = items >= 3 ? 2 : items >= 2 ? 1 : 0;
-    qtySteps.forEach(function(s, i) { s.classList.toggle('active', i === autoStep); });
+    qtySteps.forEach(function(s, i) {
+      s.classList.toggle('active', i === autoStep);
+      s.classList.toggle('reached', i < autoStep);
+    });
     selectedQty = autoStep + 1;
 
     // Order summary prices
