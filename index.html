@@ -360,7 +360,7 @@
     letter-spacing: 1px;
     text-align: center;
     border: none;
-    border-radius: 50px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background 0.2s;
   }
@@ -1448,7 +1448,8 @@
       ctaBtn.textContent = 'Escolha acima os sabores';
       ctaBtn.classList.add('disabled');
     } else {
-      ctaBtn.textContent = 'Finalizar Compra · ' + formatBRL(finalTotal);
+      var parcela = formatBRL(finalTotal / 3);
+      ctaBtn.textContent = 'FINALIZAR COMPRA \u2014 3X DE ' + parcela;
       ctaBtn.classList.remove('disabled');
     }
 
