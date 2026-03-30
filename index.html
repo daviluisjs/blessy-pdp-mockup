@@ -9,7 +9,8 @@
 <link rel="preload" as="font" href="gazpacho-bold.woff2" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"></noscript>
 <style>
 
   @font-face {
@@ -1194,7 +1195,7 @@
 
 <!-- HEADER -->
 <div class="header">
-  <img src="https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/pRz5kxGLDHEHPhqY/logo-green.png?width=1920" alt="Blessy">
+  <img src="https://cdn.instant.so/sites/aC5IvZyzQEextQYJ/assets/pRz5kxGLDHEHPhqY/logo-green.png?width=180" alt="Blessy" width="178" height="49">
   <div class="header-icons">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -1744,12 +1745,14 @@
 
   // Align connector lines to circle center
   function alignLines() {
-    var step = document.querySelector('.qty-step');
-    var circle = step.querySelector('.qty-circle');
-    if (step && circle) {
-      var lineTop = circle.offsetTop + circle.offsetHeight / 2;
-      document.querySelector('.qty-steps').style.setProperty('--line-top', lineTop + 'px');
-    }
+    requestAnimationFrame(function() {
+      var step = document.querySelector('.qty-step');
+      var circle = step.querySelector('.qty-circle');
+      if (step && circle) {
+        var lineTop = circle.offsetTop + circle.offsetHeight / 2;
+        document.querySelector('.qty-steps').style.setProperty('--line-top', lineTop + 'px');
+      }
+    });
   }
   alignLines();
   window.addEventListener('resize', alignLines);
