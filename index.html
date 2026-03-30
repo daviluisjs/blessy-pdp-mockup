@@ -1147,7 +1147,7 @@
               <div class="flavor-name">Abacaxi c/ Hortelã</div>
             </div>
           </div>
-          <div class="flavor-actions"><button class="flavor-btn">Incluir +</button></div>
+          <div class="flavor-actions"><button class="flavor-btn">Adicionar +</button></div>
         </div>
         <div class="flavor-card">
           <div class="flavor-badge red">Vendendo rápido</div>
@@ -1160,7 +1160,7 @@
               <div class="flavor-name">Melancia</div>
             </div>
           </div>
-          <div class="flavor-actions"><button class="flavor-btn">Incluir +</button></div>
+          <div class="flavor-actions"><button class="flavor-btn">Adicionar +</button></div>
         </div>
         <div class="flavor-card">
           <div class="flavor-badge orange">Estoque limitado</div>
@@ -1173,7 +1173,7 @@
               <div class="flavor-name">Limão</div>
             </div>
           </div>
-          <div class="flavor-actions"><button class="flavor-btn">Incluir +</button></div>
+          <div class="flavor-actions"><button class="flavor-btn">Adicionar +</button></div>
         </div>
         <div class="flavor-card">
           <div class="flavor-card-left">
@@ -1185,7 +1185,7 @@
               <div class="flavor-name">Manga</div>
             </div>
           </div>
-          <div class="flavor-actions"><button class="flavor-btn">Incluir +</button></div>
+          <div class="flavor-actions"><button class="flavor-btn">Adicionar +</button></div>
         </div>
 
         <!-- TESTE VISUAL: Card estilo Grüns -->
@@ -1198,7 +1198,7 @@
             <div class="flavor-card-v2-right">
               <div class="flavor-v2-badge">Mais vendido</div>
               <div class="flavor-v2-actions" id="v2Actions">
-                <button class="flavor-v2-btn" id="v2AddBtn">Incluir +</button>
+                <button class="flavor-v2-btn" id="v2AddBtn">Adicionar +</button>
               </div>
               <div class="flavor-v2-reviews">
                 <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1294,7 +1294,7 @@
     const qty = cart[name] || 0;
 
     if (qty === 0) {
-      actionArea.innerHTML = '<div class="flavor-actions"><button class="flavor-btn">Incluir +</button></div>';
+      actionArea.innerHTML = '<div class="flavor-actions"><button class="flavor-btn">Adicionar +</button></div>';
       card.classList.remove('selected');
       actionArea.querySelector('.flavor-btn').addEventListener('click', function() {
         cart[name] = 1;
@@ -1411,7 +1411,7 @@
 
     function renderV2() {
       if (v2Qty === 0) {
-        v2Actions.innerHTML = '<button class="flavor-v2-btn" id="v2AddBtn">Incluir +</button>';
+        v2Actions.innerHTML = '<button class="flavor-v2-btn" id="v2AddBtn">Adicionar +</button>';
         v2Actions.querySelector('#v2AddBtn').addEventListener('click', function() {
           v2Qty = 1;
           renderV2();
