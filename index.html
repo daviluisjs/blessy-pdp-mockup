@@ -664,41 +664,62 @@
   /* ─── FLAVOR CARD V2 (Grüns style) ─── */
   .flavor-card-v2 {
     display: flex;
-    align-items: center;
-    padding: 16px 18px;
-    border-radius: 14px;
+    align-items: stretch;
+    height: 100px;
     background: #fff;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px #eaeaea;
+    overflow: hidden;
     position: relative;
-    border: 1.5px solid #d4e8ce;
-    gap: 16px;
   }
 
   .flavor-card-v2-media {
     width: 100px;
-    height: 100px;
-    border-radius: 12px;
-    background: #f0f7e6;
-    flex-shrink: 0;
+    min-width: 100px;
+    background: #E8F0E4;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    border-radius: 6px 0 0 6px;
+    position: relative;
   }
 
   .flavor-card-v2-media img {
-    width: 90%;
-    height: 90%;
+    width: 75%;
+    height: 75%;
     object-fit: contain;
   }
 
-  .flavor-card-v2-center {
-    flex: 1;
-    min-width: 0;
+  .flavor-card-v2-media .info-icon {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: rgba(0,0,0,0.4);
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(255,255,255,0.5);
   }
 
-  .flavor-card-v2-center .flavor-name {
-    font-size: 18px;
-    font-weight: 700;
+  .flavor-card-v2-content {
+    flex: 1;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .flavor-card-v2-content .flavor-name {
+    font-size: 16px;
+    font-weight: 600;
     color: #1a1a1a;
     line-height: 1.3;
   }
@@ -707,22 +728,39 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 10px;
-    flex-shrink: 0;
+    gap: 5px;
+    padding-top: 4px;
+    position: relative;
+  }
+
+  .flavor-v2-badge {
+    position: absolute;
+    top: -18px;
+    right: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    background: #1e4431;
+    color: #fff;
+    border-radius: 0 0 6px 6px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
   }
 
   .flavor-v2-btn {
+    width: 100px;
+    height: 36px;
     background: #1e4431;
     color: #fff;
     font-family: 'Poppins', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
-    padding: 12px 24px;
-    border-radius: 10px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
-    white-space: nowrap;
     transition: background 0.2s;
+    margin-top: 6px;
   }
 
   .flavor-v2-btn:hover {
@@ -734,15 +772,15 @@
     align-items: center;
     gap: 4px;
     font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    color: #555;
-    font-weight: 500;
+    font-size: 12px;
+    color: #1a1a1a;
+    font-weight: 400;
   }
 
   .flavor-v2-reviews svg {
-    width: 16px;
-    height: 16px;
-    fill: #f59e0b;
+    width: 12px;
+    height: 12px;
+    fill: #FBBC04;
   }
 
   .cta-btn.disabled {
@@ -1117,18 +1155,19 @@
 
         <!-- TESTE VISUAL: Card estilo Grüns -->
         <div class="flavor-card-v2">
-          <div class="flavor-badge green">Mais vendido</div>
           <div class="flavor-card-v2-media">
             <img src="blessy-abacaxi-mockup.png" alt="Blessy Greens Abacaxi">
+            <div class="info-icon">i</div>
           </div>
-          <div class="flavor-card-v2-center">
-            <div class="flavor-name">Abacaxi</div>
-          </div>
-          <div class="flavor-card-v2-right">
-            <div class="flavor-actions"><button class="flavor-v2-btn">Incluir +</button></div>
-            <div class="flavor-v2-reviews">
-              <svg viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006Z" clip-rule="evenodd"/></svg>
-              <span>4.9 (+80.000)</span>
+          <div class="flavor-card-v2-content">
+            <span class="flavor-name">Abacaxi</span>
+            <div class="flavor-card-v2-right">
+              <div class="flavor-v2-badge">Mais vendido</div>
+              <button class="flavor-v2-btn">Incluir +</button>
+              <div class="flavor-v2-reviews">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>4.9 (+80.000)</span>
+              </div>
             </div>
           </div>
         </div>
