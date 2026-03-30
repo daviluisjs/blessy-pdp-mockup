@@ -243,6 +243,116 @@
     font-weight: 500;
   }
 
+  /* ─── ORDER SUMMARY ─── */
+  .order-summary {
+    padding: 0 22px 16px;
+  }
+
+  .order-summary-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e0e0e0;
+  }
+
+  .order-price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  .order-status {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #888;
+    font-weight: 500;
+  }
+
+  /* ─── CTA BUTTON ─── */
+  .cta-section {
+    padding: 0 22px 16px;
+  }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    padding: 18px 24px;
+    background: #1e4431;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .cta-btn:hover {
+    background: #2b5d44;
+  }
+
+  /* ─── GUARANTEE BADGE ─── */
+  .guarantee-section {
+    padding: 0 22px 24px;
+  }
+
+  .guarantee-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    border: 2px dashed #d4a843;
+    border-radius: 14px;
+    background: #fffef5;
+  }
+
+  .guarantee-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .guarantee-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .guarantee-text {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .guarantee-text .label {
+    font-size: 12px;
+    color: #888;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .guarantee-text .title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+
+  .guarantee-text .desc {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
   /* ─── BOTTOM SEPARATOR ─── */
   .section-end {
     height: 8px;
@@ -450,7 +560,7 @@
 
   .flavor-name {
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     color: #2E6858;
     line-height: 1.3;
@@ -800,6 +910,37 @@
             </div>
           </div>
           <button class="flavor-btn">Adicionar</button>
+        </div>
+      </div>
+
+      <!-- ORDER SUMMARY -->
+      <div class="order-summary">
+        <div class="order-summary-card">
+          <div class="order-price">R$ 189,90</div>
+          <div class="order-status">1 pote selecionado</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <button class="cta-btn">Finalizar Compra</button>
+      </div>
+
+      <!-- GUARANTEE -->
+      <div class="guarantee-section">
+        <div class="guarantee-card">
+          <div class="guarantee-icon">
+            <svg viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="28" fill="#e8d5f5" stroke="#c9a0e0" stroke-width="2"/>
+              <path d="M32 18c-1 0-10 4-10 4v12c0 8 10 14 10 14s10-6 10-14V22s-9-4-10-4z" fill="#c9a0e0" stroke="#a070c0" stroke-width="1.5"/>
+              <path d="M28 33l3 3 5-6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <div class="guarantee-text">
+            <div class="label">Seu pedido está protegido por</div>
+            <div class="title">Garantia de reembolso de 30 dias</div>
+            <div class="desc">Se você não estiver 100% apaixonada pelo produto, reembolsamos todo o valor.</div>
+          </div>
         </div>
       </div>
 
