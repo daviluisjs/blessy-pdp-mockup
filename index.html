@@ -444,6 +444,83 @@
     font-weight: 400;
   }
 
+  /* ─── FAQ ACCORDION ─── */
+  .faq-section {
+    padding: 8px 22px 24px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #d0d0d0;
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    cursor: pointer;
+    user-select: none;
+    gap: 12px;
+  }
+
+  .faq-icon {
+    font-size: 20px;
+    font-weight: 400;
+    color: #2E6858;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 600px;
+    padding-bottom: 18px;
+  }
+
+  .faq-answer-inner {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .faq-answer-inner strong {
+    color: #2E6858;
+  }
+
+  .faq-benefit-list {
+    list-style: none;
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .faq-benefit-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .faq-benefit-list li::before {
+    content: '✅';
+    font-size: 14px;
+  }
+
   /* ─── BOTTOM SEPARATOR ─── */
   .section-end {
     height: 8px;
@@ -1338,6 +1415,74 @@
         </div>
       </div>
 
+      <!-- FAQ ACCORDION -->
+      <div class="faq-section">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>O que é a Blessy?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            A Blessy é um greens em pó com <strong>36 ingredientes premium</strong> — vitaminas, minerais, superfoods, prebióticos e adaptógenos — formulado especialmente para o corpo da mulher.<br><br>
+            Diferente dos greens comuns, a Blessy foi criada com foco em <strong>saúde intestinal real</strong>: fim da constipação, fim do inchaço e disposição o dia todo.<br><br>
+            E com sabor de suquinho de fruta: Abacaxi com Hortelã, Melancia, Manga e Limão — é o único greens que você vai querer tomar. Não por obrigação, mas porque é <strong>gostoso de verdade</strong>.
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Benefícios da Blessy</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            A Blessy age de dentro pra fora. Os benefícios mais relatados pelas nossas clientes são:
+            <ul class="faq-benefit-list">
+              <li>Intestino funcionando com regularidade</li>
+              <li>Redução do inchaço e do estufamento abdominal</li>
+              <li>Mais energia e disposição</li>
+              <li>Melhora visível na pele</li>
+              <li>Equilíbrio da microbiota intestinal</li>
+            </ul>
+            São mais de <strong>3.000 avaliações</strong> e <strong>30.000 potes vendidos</strong> confirmando que o resultado é real — não é hype.
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Como consumir</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            Simples: dissolva <strong>1 scoop</strong> de Blessy em 200ml de água gelada, misture bem e beba.<br><br>
+            O ideal é tomar uma vez ao dia, preferencialmente <strong>pela manhã em jejum</strong> ou junto com o café da manhã.<br><br>
+            Não precisa de liquidificador, não precisa de receita. É só misturar e tomar — em menos de 30 segundos você entrega ao seu corpo 36 ingredientes que levariam horas pra consumir de outra forma.
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Tabela Nutricional</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            Cada scoop de Blessy entrega: <strong>3,7g de fibras alimentares</strong>, 13 vitaminas essenciais (incluindo A, C, D, E, K e complexo B completo), 10 minerais (zinco, magnésio, ferro, selênio e outros), 17 superfoods e prebióticos naturais — entre eles spirulina, chlorella, couve, cúrcuma e feno grego.<br><br>
+            Tudo isso com <strong>zero açúcar adicionado</strong>, adoçado naturalmente com stevia, e sem corantes artificiais.
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Nossa fórmula</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            A fórmula da Blessy foi desenvolvida com uma premissa clara: <strong>cada ingrediente precisa ajudar o corpo da mulher</strong>.<br><br>
+            Os 36 ingredientes foram selecionados com base científica sobre saúde intestinal feminina, e as doses foram calibradas para entregar resultado real — não apenas para aparecer no rótulo.<br><br>
+            É por isso que a Blessy funciona quando tantos outros produtos falham.
+          </div></div>
+        </div>
+      </div>
+
       <div class="section-end"></div>
     </div>
 
@@ -1643,6 +1788,20 @@
     }
     renderV2();
   })();
+})();
+
+// ─── FAQ ACCORDION ───
+(function() {
+  var items = document.querySelectorAll('.faq-item');
+  items.forEach(function(item) {
+    item.querySelector('.faq-question').addEventListener('click', function() {
+      var wasOpen = item.classList.contains('open');
+      // Close all
+      items.forEach(function(i) { i.classList.remove('open'); });
+      // Toggle clicked
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
 })();
 </script>
 
