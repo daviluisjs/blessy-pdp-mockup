@@ -245,31 +245,98 @@
 
   /* ─── ORDER SUMMARY ─── */
   .order-summary {
-    padding: 0 22px 16px;
+    padding: 0 22px 8px;
   }
 
   .order-summary-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 18px;
+    padding: 14px 18px;
     background: #fff;
     border-radius: 14px;
     border: 1px solid #e0e0e0;
   }
 
-  .order-price {
+  .order-prices {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .order-price-original {
     font-family: 'Poppins', sans-serif;
-    font-size: 22px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #aaa;
+    text-decoration: line-through;
+  }
+
+  .order-price-final {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
     font-weight: 700;
     color: #1a1a1a;
   }
 
+  .order-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .order-thumbs {
+    display: flex;
+    gap: -4px;
+  }
+
+  .order-thumb {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    margin-left: -6px;
+  }
+
+  .order-thumb:first-child {
+    margin-left: 0;
+  }
+
   .order-status {
     font-family: 'Poppins', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     color: #888;
     font-weight: 500;
+  }
+
+  .order-status a {
+    color: #2E6858;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* Discount tag */
+  .discount-tag {
+    display: none;
+    padding: 0 22px 12px;
+  }
+
+  .discount-tag.visible {
+    display: block;
+  }
+
+  .discount-tag-inner {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 6px 16px;
+    border-radius: 8px;
+    background: #eef7d9;
+    color: #2b5d44;
   }
 
   /* ─── CTA BUTTON ─── */
@@ -965,9 +1032,18 @@
       <!-- ORDER SUMMARY -->
       <div class="order-summary">
         <div class="order-summary-card">
-          <div class="order-price" id="orderPrice">R$ 0,00</div>
-          <div class="order-status" id="orderStatus">Nenhum item adicionado!</div>
+          <div class="order-prices">
+            <span class="order-price-original" id="orderOriginal"></span>
+            <span class="order-price-final" id="orderPrice">R$ 0,00</span>
+          </div>
+          <div class="order-right">
+            <div class="order-thumbs" id="orderThumbs"></div>
+            <div class="order-status" id="orderStatus">Nenhum item adicionado!</div>
+          </div>
         </div>
+      </div>
+      <div class="discount-tag" id="discountTag">
+        <span class="discount-tag-inner" id="discountTagText"></span>
       </div>
 
       <!-- CTA -->
@@ -1010,8 +1086,20 @@
   const qtySteps = document.querySelectorAll('.qty-step');
   const flavorCards = document.querySelectorAll('.flavor-card');
   const orderPrice = document.getElementById('orderPrice');
+  const orderOriginal = document.getElementById('orderOriginal');
   const orderStatus = document.getElementById('orderStatus');
+  const orderThumbs = document.getElementById('orderThumbs');
+  const discountTag = document.getElementById('discountTag');
+  const discountTagText = document.getElementById('discountTagText');
   const ctaBtn = document.querySelector('.cta-btn');
+
+  const FULL_PRICE = 189.90;
+  const FLAVOR_IMAGES = {
+    'Blessy Greens | Abacaxi': 'blessy-abacaxi-mockup.png',
+    'Blessy Greens | Melancia': 'blessy-melancia-mockup.png',
+    'Blessy Greens | Limão': 'blessy-limao-mockup.png',
+    'Blessy Greens | Manga': 'blessy-manga-mockup.png'
+  };
 
   function formatBRL(v) {
     return 'R$ ' + v.toFixed(2).replace('.', ',');
@@ -1057,20 +1145,54 @@
     }
   }
 
+  function getDiscount(items) {
+    if (items >= 3) return { pct: 25, perUnit: PRICES[3].perUnit };
+    if (items >= 2) return { pct: 14, perUnit: PRICES[2].perUnit };
+    return { pct: 0, perUnit: FULL_PRICE };
+  }
+
   function updateUI() {
     const items = totalItems();
-    const price = PRICES[selectedQty];
-    const total = items * price.perUnit;
+    const disc = getDiscount(items);
+    const originalTotal = items * FULL_PRICE;
+    const finalTotal = items * disc.perUnit;
 
-    // Order summary
-    orderPrice.textContent = formatBRL(total);
+    // Auto-select matching qty step
+    var autoStep = items >= 3 ? 2 : items >= 2 ? 1 : 0;
+    qtySteps.forEach(function(s, i) { s.classList.toggle('active', i === autoStep); });
+    selectedQty = autoStep + 1;
+
+    // Order summary prices
     if (items === 0) {
+      orderOriginal.textContent = '';
+      orderPrice.textContent = 'R$ 0,00';
       orderStatus.textContent = 'Nenhum item adicionado!';
+      orderThumbs.innerHTML = '';
     } else {
-      const parts = Object.entries(cart).map(function(e) {
-        return e[1] + 'x ' + e[0].replace('Blessy Greens | ', '');
+      if (disc.pct > 0) {
+        orderOriginal.textContent = formatBRL(originalTotal);
+      } else {
+        orderOriginal.textContent = '';
+      }
+      orderPrice.textContent = formatBRL(finalTotal);
+
+      // Thumbs
+      var thumbsHtml = '';
+      Object.keys(cart).forEach(function(name) {
+        if (FLAVOR_IMAGES[name]) {
+          thumbsHtml += '<img class="order-thumb" src="' + FLAVOR_IMAGES[name] + '" alt="">';
+        }
       });
-      orderStatus.textContent = items + (items === 1 ? ' pote' : ' potes') + ' · ' + parts.join(', ');
+      orderThumbs.innerHTML = thumbsHtml;
+      orderStatus.innerHTML = '<a href="#">Ver todos</a>';
+    }
+
+    // Discount tag
+    if (disc.pct > 0 && items > 0) {
+      discountTag.classList.add('visible');
+      discountTagText.textContent = 'GANHE ' + disc.pct + '% OFF';
+    } else {
+      discountTag.classList.remove('visible');
     }
 
     // CTA
@@ -1078,7 +1200,7 @@
       ctaBtn.textContent = 'Finalizar Compra';
       ctaBtn.classList.add('disabled');
     } else {
-      ctaBtn.textContent = 'Finalizar Compra · ' + formatBRL(total);
+      ctaBtn.textContent = 'Finalizar Compra · ' + formatBRL(finalTotal);
       ctaBtn.classList.remove('disabled');
     }
 
