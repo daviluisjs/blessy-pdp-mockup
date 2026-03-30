@@ -459,6 +459,7 @@
 
   /* ─── STICKY BOTTOM BAR ─── */
   .sticky-bar {
+    display: none;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -549,6 +550,10 @@
 
   .sticky-bar__btn.empty {
     background: #8aab7a;
+  }
+
+  @media (max-width: 768px) {
+    .sticky-bar { display: flex; }
   }
 
   /* ─── SECTION BENEFÍCIOS ─── */
