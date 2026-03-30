@@ -1300,7 +1300,7 @@
 
   function confetti() {
     var colors = ['#bdf07d','#2E6858','#d4f5a0','#f59e0b','#1e4431','#fee2e2','#dc2626','#fff'];
-    var count = 60;
+    var count = 80;
     var container = document.createElement('div');
     container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden';
     document.body.appendChild(container);
@@ -1308,21 +1308,26 @@
     for (var i = 0; i < count; i++) {
       var p = document.createElement('div');
       var size = Math.random() * 8 + 4;
-      var x = Math.random() * 100;
-      var drift = (Math.random() - 0.5) * 40;
-      var dur = Math.random() * 1.5 + 1.5;
-      var delay = Math.random() * 0.4;
+      var angle = Math.random() * Math.PI * 2;
+      var velocity = Math.random() * 300 + 150;
+      var endX = Math.cos(angle) * velocity;
+      var endY = Math.sin(angle) * velocity;
+      var spin = (Math.random() - 0.5) * 1080;
+      var dur = Math.random() * 1 + 1.2;
+      var delay = Math.random() * 0.15;
       var shape = Math.random() > 0.5 ? '50%' : (Math.random() > 0.5 ? '2px' : '0');
-      p.style.cssText = 'position:absolute;top:-10px;left:' + x + '%;width:' + size + 'px;height:' + (size * (Math.random() * 0.6 + 0.7)) + 'px;background:' + colors[Math.floor(Math.random() * colors.length)] + ';border-radius:' + shape + ';opacity:0.9;animation:confetti-fall ' + dur + 's ease-in ' + delay + 's forwards';
+      var color = colors[Math.floor(Math.random() * colors.length)];
+
+      p.style.cssText = 'position:absolute;top:50%;left:50%;width:' + size + 'px;height:' + (size * (Math.random() * 0.6 + 0.7)) + 'px;background:' + color + ';border-radius:' + shape + ';opacity:1;--ex:' + endX + 'px;--ey:' + endY + 'px;--spin:' + spin + 'deg;animation:confetti-burst ' + dur + 's cubic-bezier(.2,.8,.4,1) ' + delay + 's forwards';
       container.appendChild(p);
     }
 
-    setTimeout(function() { container.remove(); }, 3000);
+    setTimeout(function() { container.remove(); }, 2500);
   }
 
-  // inject confetti keyframes
+  // inject confetti keyframes — burst from center
   var style = document.createElement('style');
-  style.textContent = '@keyframes confetti-fall{0%{transform:translateY(0) rotate(0deg) translateX(0);opacity:1}100%{transform:translateY(100vh) rotate(' + (Math.random()>0.5?'':'-') + '720deg) translateX(' + ((Math.random()-0.5)*80) + 'px);opacity:0}}';
+  style.textContent = '@keyframes confetti-burst{0%{transform:translate(0,0) rotate(0deg) scale(1);opacity:1}70%{opacity:1}100%{transform:translate(var(--ex),var(--ey)) rotate(var(--spin)) scale(0.3);opacity:0}}';
   document.head.appendChild(style);
 
   function formatBRL(v) {
