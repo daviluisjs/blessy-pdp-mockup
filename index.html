@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blessy PDP - Hero Section Mockup</title>
+<link rel="preconnect" href="https://yxnrnigxifbihzvzdhbk.supabase.co" crossorigin>
+<link rel="preload" as="image" href="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_100px.png" fetchpriority="high">
+<link rel="preload" as="font" href="gazpacho-bold.woff2" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +14,7 @@
 
   @font-face {
     font-family: 'Gazpacho';
-    src: url('gazpacho-bold.ttf') format('truetype');
+    src: url('gazpacho-bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -1205,11 +1208,11 @@
     <div class="hero-image-section">
       <!-- Mobile carousel -->
       <div class="carousel-track" id="carouselTrack">
-        <img class="hero-img-mobile" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_100px.png" alt="Blessy Suco Verde">
-        <img class="hero-img-mobile" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_2_mobile.png" alt="Blessy Suco Verde 2">
+        <img class="hero-img-mobile" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_100px.png" alt="Blessy Suco Verde" fetchpriority="high" width="1000" height="700">
+        <img class="hero-img-mobile" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_2_mobile.png" alt="Blessy Suco Verde 2" loading="lazy" width="1000" height="700">
       </div>
       <!-- Desktop: imagem quadrada -->
-      <img class="hero-img-desktop" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_desktop.png" alt="Blessy Suco Verde">
+      <img class="hero-img-desktop" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_desktop.png" alt="Blessy Suco Verde" loading="lazy" width="1000" height="1000">
 
       <div class="carousel-arrow left" id="carouselLeft">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
@@ -1317,7 +1320,7 @@
           <div class="flavor-badge green">Mais vendido</div>
           <div class="flavor-card-left">
             <div class="flavor-img-wrap">
-              <img class="flavor-img" src="blessy-abacaxi-mockup.png" alt="Blessy Greens Abacaxi">
+              <img class="flavor-img" src="blessy-abacaxi-mockup.webp" loading="lazy" width="112" height="112" alt="Blessy Greens Abacaxi">
             </div>
             <div class="flavor-info">
               <div class="flavor-line">Blessy Greens</div>
@@ -1330,7 +1333,7 @@
           <div class="flavor-badge red">Vendendo rápido</div>
           <div class="flavor-card-left">
             <div class="flavor-img-wrap">
-              <img class="flavor-img" src="blessy-melancia-mockup.png" alt="Blessy Greens Melancia">
+              <img class="flavor-img" src="blessy-melancia-mockup.webp" loading="lazy" width="112" height="112" alt="Blessy Greens Melancia">
             </div>
             <div class="flavor-info">
               <div class="flavor-line">Blessy Greens</div>
@@ -1343,7 +1346,7 @@
           <div class="flavor-badge orange">Estoque limitado</div>
           <div class="flavor-card-left">
             <div class="flavor-img-wrap">
-              <img class="flavor-img" src="blessy-limao-mockup.png" alt="Blessy Greens Limão">
+              <img class="flavor-img" src="blessy-limao-mockup.webp" loading="lazy" width="112" height="112" alt="Blessy Greens Limão">
             </div>
             <div class="flavor-info">
               <div class="flavor-line">Blessy Greens</div>
@@ -1355,7 +1358,7 @@
         <div class="flavor-card">
           <div class="flavor-card-left">
             <div class="flavor-img-wrap">
-              <img class="flavor-img" src="blessy-manga-mockup.png" alt="Blessy Greens Manga">
+              <img class="flavor-img" src="blessy-manga-mockup.webp" loading="lazy" width="112" height="112" alt="Blessy Greens Manga">
             </div>
             <div class="flavor-info">
               <div class="flavor-line">Blessy Greens</div>
@@ -1368,7 +1371,7 @@
         <!-- TESTE VISUAL: Card estilo Grüns -->
         <div class="flavor-card-v2" id="v2Card">
           <div class="flavor-card-v2-media">
-            <img src="blessy-abacaxi-mockup.png" alt="Blessy Greens Abacaxi">
+            <img src="blessy-abacaxi-mockup.webp" loading="lazy" width="112" height="112" alt="Blessy Greens Abacaxi">
           </div>
           <div class="flavor-card-v2-content">
             <div><div class="flavor-line">Blessy Greens</div><span class="flavor-name">Abacaxi c/ Hortelã</span></div>
@@ -1551,10 +1554,10 @@
 
   const FULL_PRICE = 189.90;
   const FLAVOR_IMAGES = {
-    'Abacaxi c/ Hortelã': 'blessy-abacaxi-mockup.png',
-    'Melancia': 'blessy-melancia-mockup.png',
-    'Limão': 'blessy-limao-mockup.png',
-    'Manga': 'blessy-manga-mockup.png'
+    'Abacaxi c/ Hortelã': 'blessy-abacaxi-mockup.webp',
+    'Melancia': 'blessy-melancia-mockup.webp',
+    'Limão': 'blessy-limao-mockup.webp',
+    'Manga': 'blessy-manga-mockup.webp'
   };
 
   var lastTotal = 0;
