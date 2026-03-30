@@ -80,11 +80,20 @@
     background: #efffe9;
   }
 
+  /* Carousel track */
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+    width: 100%;
+  }
+
   /* Mobile image (default) */
   .hero-img-mobile {
     width: 100%;
+    min-width: 100%;
     height: auto;
     display: block;
+    flex-shrink: 0;
   }
 
   /* Desktop image (hidden on mobile) */
@@ -1194,23 +1203,23 @@
 
     <!-- IMAGE COLUMN -->
     <div class="hero-image-section">
-      <!-- Mobile: imagem landscape/achatada -->
-      <img class="hero-img-mobile" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_100px.png" alt="Blessy Suco Verde">
+      <!-- Mobile carousel -->
+      <div class="carousel-track" id="carouselTrack">
+        <img class="hero-img-mobile" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_100px.png" alt="Blessy Suco Verde">
+        <img class="hero-img-mobile" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_2_mobile.png" alt="Blessy Suco Verde 2">
+      </div>
       <!-- Desktop: imagem quadrada -->
       <img class="hero-img-desktop" src="https://yxnrnigxifbihzvzdhbk.supabase.co/storage/v1/object/public/demo-public/hero_pdp_desktop.png" alt="Blessy Suco Verde">
 
-      <div class="carousel-arrow left">
+      <div class="carousel-arrow left" id="carouselLeft">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </div>
-      <div class="carousel-arrow right">
+      <div class="carousel-arrow right" id="carouselRight">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
 
-      <div class="carousel-dots">
+      <div class="carousel-dots" id="carouselDots">
         <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
         <div class="dot"></div>
       </div>
     </div>
@@ -1788,6 +1797,36 @@
     }
     renderV2();
   })();
+})();
+
+// ─── IMAGE CAROUSEL ───
+(function() {
+  var track = document.getElementById('carouselTrack');
+  var dots = document.querySelectorAll('#carouselDots .dot');
+  var leftBtn = document.getElementById('carouselLeft');
+  var rightBtn = document.getElementById('carouselRight');
+  var images = track.querySelectorAll('.hero-img-mobile');
+  var current = 0;
+  var total = images.length;
+
+  function goTo(i) {
+    current = Math.max(0, Math.min(i, total - 1));
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function(d, idx) { d.classList.toggle('active', idx === current); });
+  }
+
+  leftBtn.addEventListener('click', function() { goTo(current - 1); });
+  rightBtn.addEventListener('click', function() { goTo(current + 1); });
+
+  // Swipe support
+  var startX = 0;
+  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; });
+  track.addEventListener('touchend', function(e) {
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+  });
+
+  dots.forEach(function(dot, i) { dot.addEventListener('click', function() { goTo(i); }); });
 })();
 
 // ─── FAQ ACCORDION ───
