@@ -1433,9 +1433,25 @@
   // ─── QTY STEP CLICKS ───
   qtySteps.forEach(function(step, i) {
     step.addEventListener('click', function() {
-      selectedQty = i + 1;
-      qtySteps.forEach(function(s) { s.classList.remove('active'); });
-      step.classList.add('active');
+      var targetQty = i + 1; // 1, 2, or 3
+      var currentItems = totalItems();
+
+      if (targetQty <= currentItems) return; // already at or above
+
+      var toAdd = targetQty - currentItems;
+
+      if (currentItems === 0) {
+        // Nothing selected — default to Abacaxi + Melancia
+        var defaults = ['Abacaxi c/ Hortelã', 'Melancia', 'Limão'];
+        for (var d = 0; d < toAdd && d < defaults.length; d++) {
+          cart[defaults[d]] = (cart[defaults[d]] || 0) + 1;
+        }
+      } else {
+        // Already has items — add more of the first selected flavor
+        var firstFlavor = Object.keys(cart)[0];
+        cart[firstFlavor] = (cart[firstFlavor] || 0) + toAdd;
+      }
+
       updateUI();
     });
   });
