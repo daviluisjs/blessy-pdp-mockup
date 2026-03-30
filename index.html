@@ -1147,7 +1147,7 @@
               <div class="flavor-name">Abacaxi c/ Hortelã</div>
             </div>
           </div>
-          <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
+          <div class="flavor-actions"><button class="flavor-btn">Incluir +</button></div>
         </div>
         <div class="flavor-card">
           <div class="flavor-badge red">Vendendo rápido</div>
@@ -1160,7 +1160,7 @@
               <div class="flavor-name">Melancia</div>
             </div>
           </div>
-          <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
+          <div class="flavor-actions"><button class="flavor-btn">Incluir +</button></div>
         </div>
         <div class="flavor-card">
           <div class="flavor-badge orange">Estoque limitado</div>
@@ -1173,7 +1173,7 @@
               <div class="flavor-name">Limão</div>
             </div>
           </div>
-          <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
+          <div class="flavor-actions"><button class="flavor-btn">Incluir +</button></div>
         </div>
         <div class="flavor-card">
           <div class="flavor-card-left">
@@ -1185,7 +1185,7 @@
               <div class="flavor-name">Manga</div>
             </div>
           </div>
-          <div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>
+          <div class="flavor-actions"><button class="flavor-btn">Incluir +</button></div>
         </div>
 
         <!-- TESTE VISUAL: Card estilo Grüns -->
@@ -1294,7 +1294,7 @@
     const qty = cart[name] || 0;
 
     if (qty === 0) {
-      actionArea.innerHTML = '<div class="flavor-actions"><button class="flavor-btn">Incluir</button></div>';
+      actionArea.innerHTML = '<div class="flavor-actions"><button class="flavor-btn">Incluir +</button></div>';
       card.classList.remove('selected');
       actionArea.querySelector('.flavor-btn').addEventListener('click', function() {
         cart[name] = 1;
